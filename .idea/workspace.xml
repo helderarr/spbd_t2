@@ -28,15 +28,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/hive" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/hive" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="spdb_t2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606681398063</updated>
       <workItem from="1606681399151" duration="2172000" />
-      <workItem from="1606692348699" duration="3037000" />
+      <workItem from="1606692348699" duration="8675000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>

@@ -1,0 +1,1 @@
+docker run -v /Users/helder/GitHub/spdb_t2:/root/work --name hive -it -P prasanthj/docker-hive-on-tez /etc/hive-bootstrap.sh -bash
