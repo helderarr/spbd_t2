@@ -40,7 +40,7 @@ try:
     df.groupBy(year("TripStartTimestamp").alias("year")) \
         .count() \
         .withColumnRenamed("count", "#trips") \
-        .show()
+        .show(truncate=False)
 
     # For each of the 24 hours of the day, how many taxi trips there were, what was their average
     # trip miles and trip total cost?
@@ -51,7 +51,7 @@ try:
         .withColumn("avg_trip_miles", format_number("avg(TripMiles)", 2)) \
         .withColumn("avg_trip_total", format_number("avg(TripTotal)", 2)) \
         .select("time_slot", "#trips", "avg_trip_miles", "avg_trip_total") \
-        .show()
+        .show(truncate=False)
 
     # For each of the 24 hours of the day, which are the(up to) 5 most popular routes(pairs
     # pickup / dropoff regions) according to the the total number of taxi trips? Also report
