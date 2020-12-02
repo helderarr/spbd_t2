@@ -55,21 +55,29 @@ group by date_format(tripstarttimestamp,'HH aaa');
 --pickup/dropoff regions) according to the the total number of taxi trips? Also report
 --and the average fare (total trip cost).
 --Non-integer values should be printed with two decimal places.
-with data as (select *,
+with data as (
+    select *,
        row_number() over (partition by hour order by `trip total cost` desc) r
-from (
-         select date_format(tripstarttimestamp, 'HH aaa') as `hour`,
-                pickupregionid,
-                dropoffregionid,
-                count(*)                                  as `Trips count`,
-                round(sum(tripmiles) / count(*), 2)          `average trip miles`,
-                round(sum(triptotal) / count(*), 2)          `trip total cost`
-         from taxi_trips
-         where pickupregionid is not null and pickupregionid <> ''
-           and dropoffregionid is not null and dropoffregionid <> ''
-         group by date_format(tripstarttimestamp, 'HH aaa'), pickupregionid, dropoffregionid
-     ) x)
-select hour,r,pickupregionid,dropoffregionid,
+    from (
+             select date_format(tripstarttimestamp, 'HH aaa') as `hour`,
+                    pickupregionid,
+                    dropoffregionid,
+                    count(*)                                  as `Trips count`,
+                    round(sum(tripmiles) / count(*), 2)          `average trip miles`,
+                    round(sum(triptotal) / count(*), 2)          `trip total cost`
+             from taxi_trips
+             where pickupregionid is not null and pickupregionid <> ''
+               and dropoffregionid is not null and dropoffregionid <> ''
+             group by date_format(tripstarttimestamp, 'HH aaa'), pickupregionid, dropoffregionid
+         ) x
+    )
+select hour,pickupregionid,dropoffregionid,
     `Trips count`,`average trip miles`,`trip total cost`
 from data
 where r <= 5;
+
+
+--What is the accumulated number of taxi trips per month?
+select lpad(month(tripstarttimestamp), 2, "0") as `month`, count(*) as `Trips count`
+from taxi_trips
+group by month(tripstarttimestamp);

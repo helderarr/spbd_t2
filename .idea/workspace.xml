@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -16,6 +19,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -29,6 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -36,7 +47,7 @@
       <recent name="$PROJECT_DIR$/hive" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.sparkdataframes">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="spdb_t2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -59,6 +70,37 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="sparkdataframes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.8" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sparkdataframes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.sparkdataframes" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.sparkdataframes" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -69,7 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606681398063</updated>
       <workItem from="1606681399151" duration="2172000" />
-      <workItem from="1606692348699" duration="8675000" />
+      <workItem from="1606692348699" duration="10438000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -105,10 +147,34 @@
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="286" y="363" key="#SQL_Dialects/0.25.1792.1010@0.25.1792.1010" timestamp="1606690702959" />
+    <state x="360" y="189" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606871230595">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state x="360" y="189" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1606871230595" />
     <state x="625" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606681499341">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="625" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1792.1010@0.25.1792.1010" timestamp="1606681499341" />
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom" timestamp="1606871317616">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1606871317616" />
+    <state width="1750" height="272" key="GridCell.Tab.0.center" timestamp="1606871317615">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state width="1750" height="272" key="GridCell.Tab.0.center/0.25.1792.1010@0.25.1792.1010" timestamp="1606871317615" />
+    <state width="1750" height="272" key="GridCell.Tab.0.left" timestamp="1606871317615">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state width="1750" height="272" key="GridCell.Tab.0.left/0.25.1792.1010@0.25.1792.1010" timestamp="1606871317615" />
+    <state width="1750" height="272" key="GridCell.Tab.0.right" timestamp="1606871317615">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state width="1750" height="272" key="GridCell.Tab.0.right/0.25.1792.1010@0.25.1792.1010" timestamp="1606871317615" />
+    <state x="405" y="166" key="SettingsEditor" timestamp="1606871312222">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state x="405" y="166" key="SettingsEditor/0.25.1792.1010@0.25.1792.1010" timestamp="1606871312222" />
     <state x="748" y="447" key="VCS.ChangelistChooser" timestamp="1606728272946">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
@@ -117,5 +183,8 @@
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="496" y="267" key="Vcs.Push.Dialog.v2/0.25.1792.1010@0.25.1792.1010" timestamp="1606728160284" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/spdb_t2$sparkdataframes.coverage" NAME="sparkdataframes Coverage Results" MODIFIED="1606871252348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
