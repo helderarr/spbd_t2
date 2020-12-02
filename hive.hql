@@ -28,7 +28,7 @@ ROW FORMAT DELIMITED
   FIELDS TERMINATED BY '\;'
 STORED AS TEXTFILE;
 
--- change date time format
+-- change date time text format
 ALTER TABLE taxi_trips SET SERDEPROPERTIES ("timestamp.formats"="MM/dd/yyyy hh:mm:ss aaa");
 
 LOAD DATA LOCAL INPATH "/root/work/Taxi_Trips_151MB.csv" INTO TABLE taxi_trips;

@@ -13,10 +13,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="init hive">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spdb_t2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spdb_t2.iml" afterDir="false" />
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="init spark dataframes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive.hql" beforeDir="false" afterPath="$PROJECT_DIR$/hive.hql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sparkdataframes.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparkdataframes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +40,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -114,7 +114,10 @@
       <updated>1606681398063</updated>
       <workItem from="1606681399151" duration="2172000" />
       <workItem from="1606692348699" duration="10438000" />
-      <workItem from="1606871342462" duration="4482000" />
+      <workItem from="1606871342462" duration="14190000" />
+      <workItem from="1606928972220" duration="319000" />
+      <workItem from="1606929399631" duration="226000" />
+      <workItem from="1606929658516" duration="285000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -130,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606871400261</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="init spark dataframes">
+      <created>1606876599516</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606876599516</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,75 +160,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init hive" />
-    <option name="LAST_COMMIT_MESSAGE" value="init hive" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="286" y="363" key="#SQL_Dialects" timestamp="1606690702959">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="286" y="363" key="#SQL_Dialects/0.25.1792.1010@0.25.1792.1010" timestamp="1606690702959" />
-    <state x="360" y="189" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606874527191">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="360" y="189" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1606874527191" />
-    <state x="625" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606681499341">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="625" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1792.1010@0.25.1792.1010" timestamp="1606681499341" />
-    <state width="875" height="384" key="GridCell.Tab.0.bottom" timestamp="1606875734740">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734740" />
-    <state width="875" height="384" key="GridCell.Tab.0.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1606875650236" />
-    <state width="875" height="384" key="GridCell.Tab.0.center" timestamp="1606875734739">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734739" />
-    <state width="875" height="384" key="GridCell.Tab.0.center/0.25.1792.1010@0.25.1792.1010" timestamp="1606875650236" />
-    <state width="875" height="384" key="GridCell.Tab.0.left" timestamp="1606875734739">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734739" />
-    <state width="875" height="384" key="GridCell.Tab.0.left/0.25.1792.1010@0.25.1792.1010" timestamp="1606875650235" />
-    <state width="875" height="384" key="GridCell.Tab.0.right" timestamp="1606875734740">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734740" />
-    <state width="875" height="384" key="GridCell.Tab.0.right/0.25.1792.1010@0.25.1792.1010" timestamp="1606875650236" />
-    <state width="875" height="384" key="GridCell.Tab.1.bottom" timestamp="1606875734742">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.1.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734742" />
-    <state width="875" height="384" key="GridCell.Tab.1.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1606875646531" />
-    <state width="875" height="384" key="GridCell.Tab.1.center" timestamp="1606875734741">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.1.center/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734741" />
-    <state width="875" height="384" key="GridCell.Tab.1.center/0.25.1792.1010@0.25.1792.1010" timestamp="1606875646531" />
-    <state width="875" height="384" key="GridCell.Tab.1.left" timestamp="1606875734741">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.1.left/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734741" />
-    <state width="875" height="384" key="GridCell.Tab.1.left/0.25.1792.1010@0.25.1792.1010" timestamp="1606875646530" />
-    <state width="875" height="384" key="GridCell.Tab.1.right" timestamp="1606875734742">
-      <screen x="0" y="0" width="1792" height="1120" />
-    </state>
-    <state width="875" height="384" key="GridCell.Tab.1.right/0.0.1792.1120@0.0.1792.1120" timestamp="1606875734742" />
-    <state width="875" height="384" key="GridCell.Tab.1.right/0.25.1792.1010@0.25.1792.1010" timestamp="1606875646531" />
-    <state x="405" y="166" key="SettingsEditor" timestamp="1606871615251">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="405" y="166" key="SettingsEditor/0.25.1792.1010@0.25.1792.1010" timestamp="1606871615251" />
-    <state x="748" y="447" key="VCS.ChangelistChooser" timestamp="1606728272946">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="748" y="447" key="VCS.ChangelistChooser/0.25.1792.1010@0.25.1792.1010" timestamp="1606728272946" />
-    <state x="496" y="267" key="Vcs.Push.Dialog.v2" timestamp="1606871407460">
-      <screen x="0" y="25" width="1792" height="1010" />
-    </state>
-    <state x="496" y="267" key="Vcs.Push.Dialog.v2/0.25.1792.1010@0.25.1792.1010" timestamp="1606871407460" />
+    <MESSAGE value="init spark dataframes" />
+    <option name="LAST_COMMIT_MESSAGE" value="init spark dataframes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spdb_t2$sparkdataframes.coverage" NAME="sparkdataframes Coverage Results" MODIFIED="1606875641467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spdb_t2$sparkdataframes.coverage" NAME="sparkdataframes Coverage Results" MODIFIED="1606921532291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
