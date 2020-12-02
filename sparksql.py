@@ -38,7 +38,7 @@ df.createOrReplaceTempView("taxi_trips")
 # What is the accumulated number of taxi trips per month?
 # Output is expected to have two columns: (month_number, #total_trips).
 spark.sql('select lpad(month(TripStartTimestamp), 2, "0") as month_number,'
-          'count(*) as `#total_trips` '
+          '     count(*) as `#total_trips` '
           'from taxi_trips '
           'group by lpad(month(TripStartTimestamp), 2, "0")').show()
 
@@ -46,7 +46,9 @@ spark.sql('select lpad(month(TripStartTimestamp), 2, "0") as month_number,'
 # Output is expected to have two columns: (pickup_region_ID, list_of_dropoff_region_ID)
 spark.sql('select PickupRegionID as pickup_region_ID,'
           'collect_list(DropoffRegionID) as list_of_dropoff_region_ID '
-          'from (select distinct PickupRegionID,DropoffRegionID  from taxi_trips) '
+          'from (select distinct PickupRegionID,DropoffRegionID '
+          '      from taxi_trips'
+          '      where PickupRegionID is not null and DropoffRegionID is not null) '
           'group by PickupRegionID') \
     .show(truncate=False)
 
@@ -67,8 +69,8 @@ spark.udf.register("day_off_week", day_off_week)
 spark.sql('select concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),date_format(tripstarttimestamp, "_hh_a")) '
           'as pickup, round(avg (TripTotal),2) as avg_total_trip_cost '
           'from taxi_trips '
-          'where PickupRegionID is not null '
+          'where PickupRegionID is not null and PickupRegionID <> "" '
           'group by concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),date_format(tripstarttimestamp, "_hh_a"))') \
-    .show(truncate=False)
+    .where("pickup like '17031980000%'").show(truncate=False)
 
 spark.stop()

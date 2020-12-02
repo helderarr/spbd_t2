@@ -81,3 +81,30 @@ where r <= 5;
 select lpad(month(tripstarttimestamp), 2, "0") as `month`, count(*) as `Trips count`
 from taxi_trips
 group by month(tripstarttimestamp);
+
+---------------------------------------------------------------------
+
+-- What is the accumulated number of taxi trips per month?
+-- Output is expected to have two columns: (month_number, #total_trips).
+select lpad(month(TripStartTimestamp), 2, "0") as month_number,
+    count(*) as `#total_trips`
+from taxi_trips
+group by lpad(month(TripStartTimestamp), 2, "0");
+
+select PickupRegionID as pickup_region_ID,
+    collect_set(DropoffRegionID) as list_of_dropoff_region_ID
+from   (select distinct PickupRegionID,DropoffRegionID  from taxi_trips
+        where PickupRegionID is not null and DropoffRegionID is not null) x
+group by PickupRegionID;
+
+
+-- What is the expected charge/cost of a taxi ride, given the pickup region ID, the weekday
+-- (0=Monday, 6=Sunday) and time in format “hour AM/PM”?
+-- Output is expected to have two columns: (month_number, avg_total_trip_cost).
+-- We used <<pickuo>> as first column name instead of <<month_number>> as <<month_number>> is meaningless
+select concat(PickupRegionID,"_",cast(date_format(tripstarttimestamp, "u") as INT) -1, date_format(tripstarttimestamp, "_hh_aaa"))
+as pickup, round(avg (TripTotal),2) as avg_total_trip_cost
+from taxi_trips
+where PickupRegionID is not null and PickupRegionID <> ''
+group by concat(PickupRegionID,"_",cast(date_format(tripstarttimestamp, "u") as INT) -1, date_format(tripstarttimestamp, "_hh_aaa"));
+
