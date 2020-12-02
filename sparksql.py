@@ -56,7 +56,7 @@ spark.sql('select PickupRegionID as pickup_region_ID,'
 # What is the expected charge/cost of a taxi ride, given the pickup region ID, the weekday
 # (0=Monday, 6=Sunday) and time in format “hour AM/PM”?
 # Output is expected to have two columns: (month_number, avg_total_trip_cost).
-# We used <<pickuo>> as first column name instead of <<month_number>> as <<month_number>> is meaningless
+# We used <<pickup>> as first column name instead of <<month_number>> as <<month_number>> is meaningless
 
 # define an UDF as the date_format function doesn't allow to extract the day of the week as a numeric value
 def day_off_week(d):
@@ -71,6 +71,6 @@ spark.sql('select concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),dat
           'from taxi_trips '
           'where PickupRegionID is not null and PickupRegionID <> "" '
           'group by concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),date_format(tripstarttimestamp, "_hh_a"))') \
-    .where("pickup like '17031980000%'").show(truncate=False)
+    .show(truncate=False)
 
 spark.stop()
