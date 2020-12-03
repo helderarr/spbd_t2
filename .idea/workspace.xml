@@ -13,11 +13,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="fin part spark sql">
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="fim hive">
+      <change afterPath="$PROJECT_DIR$/pivot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hive.hql" beforeDir="false" afterPath="$PROJECT_DIR$/hive.hql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hive.sh" beforeDir="false" afterPath="$PROJECT_DIR$/hive.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparksql.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparksql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparkdataframes.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparkdataframes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +52,7 @@
       <recent name="$PROJECT_DIR$/hive" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.sparksql">
+  <component name="RunManager" selected="Python.sparkdataframes">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="spdb_t2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,13 +75,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sparkdataframes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pivot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="spdb_t2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pivot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sparkdataframes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="spdb_t2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -124,11 +142,13 @@
       <item itemvalue="Python.main" />
       <item itemvalue="Python.sparkdataframes" />
       <item itemvalue="Python.sparksql" />
+      <item itemvalue="Python.pivot" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.sparksql" />
         <item itemvalue="Python.sparkdataframes" />
+        <item itemvalue="Python.pivot" />
+        <item itemvalue="Python.sparksql" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +166,7 @@
       <workItem from="1606928972220" duration="319000" />
       <workItem from="1606929399631" duration="226000" />
       <workItem from="1606929658516" duration="3659000" />
-      <workItem from="1606945340229" duration="3411000" />
+      <workItem from="1606945340229" duration="16444000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -190,7 +210,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606947482460</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fim hive">
+      <created>1606949889296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606949889296</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fim hive">
+      <created>1606950130302</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606950130302</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,21 +247,23 @@
     <MESSAGE value="init spark dataframes" />
     <MESSAGE value="fin part spark data frames" />
     <MESSAGE value="fin part spark sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="fin part spark sql" />
+    <MESSAGE value="fim hive" />
+    <option name="LAST_COMMIT_MESSAGE" value="fim hive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sparksql.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/sparkdataframes.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spdb_t2$sparkdataframes.coverage" NAME="sparkdataframes Coverage Results" MODIFIED="1606921532291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/spdb_t2$sparksql.coverage" NAME="sparksql Coverage Results" MODIFIED="1606949007283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spdb_t2$sparkdataframes.coverage" NAME="sparkdataframes Coverage Results" MODIFIED="1607017276702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spdb_t2$pivot.coverage" NAME="pivot Coverage Results" MODIFIED="1607016021072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spdb_t2$sparksql.coverage" NAME="sparksql Coverage Results" MODIFIED="1606949634260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

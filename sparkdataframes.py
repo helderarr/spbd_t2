@@ -1,3 +1,4 @@
+from pyspark import StorageLevel
 from pyspark.sql import *
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
@@ -72,6 +73,53 @@ try:
         .withColumn("pickup_location", concat_ws(" ", "hour", "PickupRegionID", "DropoffRegionID")) \
         .select("pickup_location", "#trips", "avg_trip_miles", "avg_trip_total") \
         .show(truncate=False)
+
+    # EXTRA
+
+    # https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&s=emm_epm0_pte_nus_dpg&f=m
+    gas_df = spark.read.csv("data/gas_price.csv", sep=';', inferSchema=True, header=True)
+    gas_df.show()
+
+    # https://sparkbyexamples.com/pyspark/pyspark-pivot-and-unpivot-dataframe
+    unpivotExpr = "stack(12, 'Jan',Jan,'Feb',Feb,'Mar',Mar,'Apr',Apr,'May',May,'Jun',Jun,'Jul',Jul," \
+                  "'Aug',Aug,'Sep',Sep,'Oct',Oct,'Nov',Nov,'Dec',Dec) as (Month,Price)"
+
+    gas_df = gas_df.select('Year', expr(unpivotExpr))
+    gas_df.show()
+    gas_df.printSchema()
+
+    gas_df = gas_df.withColumn("DateKey", concat_ws(" ", "Year", "Month"))\
+        .persist(storageLevel=StorageLevel.MEMORY_ONLY)
+
+    gas_df.show()
+
+    df = df.withColumn("DateKey", date_format("TripStartTimestamp", "y LLL"))
+    df.show()
+
+    trips = df.alias("trips")
+    gas = gas_df.alias('gas')
+
+    joined = trips.join(gas, gas.DateKey == trips.DateKey)
+
+    # https://en.wikipedia.org/wiki/Fuel_economy_in_automobiles
+    # United States (L/100 km) – 'combined' 9.8, 'city' 11.2, 'highway' 8.1[21]
+    # 26.3 mpg
+
+    agg_costs = joined.withColumn("gas_cost", joined.TripMiles * joined.Price / 26.3) \
+        .groupBy(year('TripStartTimestamp').alias('year')) \
+        .agg({"gas_cost": "sum", "TripTotal": "sum", "Price": "sum", "*": "count", "TripMiles": "sum"}) \
+        .withColumnRenamed("sum(gas_cost)", "sum_gas_cost") \
+        .withColumnRenamed("sum(TripTotal)", "sum_trip_total") \
+        .withColumnRenamed("sum(TripMiles)", "sum_trip_miles") \
+        .withColumnRenamed("sum(Price)", "sum_price") \
+        .withColumnRenamed("count(1)", "cnt")
+
+    agg_costs.withColumn("% gas cost on total", round(agg_costs.sum_gas_cost * 100 / agg_costs.sum_trip_total, 2)) \
+        .withColumn("avg gas price $/g", round(agg_costs.sum_price / agg_costs.cnt, 2)) \
+        .withColumn("$/mile", round(agg_costs.sum_trip_miles / agg_costs.cnt, 2)) \
+        .drop("sum_trip_total", "sum_gas_cost", "sum_price", "cnt", "sum_trip_miles") \
+        .orderBy(agg_costs.year) \
+        .show()
 
 
 except Exception as err:
