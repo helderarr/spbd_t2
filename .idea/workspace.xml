@@ -13,7 +13,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="exercice extra">
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="exercice extra 2nd half">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hive.hql" beforeDir="false" afterPath="$PROJECT_DIR$/hive.hql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sparksql.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparksql.py" afterDir="false" />
@@ -50,6 +50,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/hive" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Python.sparksql">
@@ -166,7 +169,7 @@
       <workItem from="1606928972220" duration="319000" />
       <workItem from="1606929399631" duration="226000" />
       <workItem from="1606929658516" duration="3659000" />
-      <workItem from="1606945340229" duration="19992000" />
+      <workItem from="1606945340229" duration="23200000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -231,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607032832278</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="exercice extra 2nd half">
+      <created>1607090370088</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607090370088</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +266,8 @@
     <MESSAGE value="fin part spark sql" />
     <MESSAGE value="fim hive" />
     <MESSAGE value="exercice extra" />
-    <option name="LAST_COMMIT_MESSAGE" value="exercice extra" />
+    <MESSAGE value="exercice extra 2nd half" />
+    <option name="LAST_COMMIT_MESSAGE" value="exercice extra 2nd half" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
