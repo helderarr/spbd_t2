@@ -1,6 +1,5 @@
 from pyspark.sql import *
 from pyspark.sql.types import *
-from pyspark.sql.functions import *
 
 spark = SparkSession.builder.master('local[*]') \
     .appName('Exercice 1').getOrCreate()
@@ -70,7 +69,7 @@ spark.sql('select concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),dat
           'as pickup, round(avg (TripTotal),2) as avg_total_trip_cost '
           'from taxi_trips '
           'where PickupRegionID is not null and PickupRegionID <> "" '
-          'group by concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),date_format(tripstarttimestamp, "_hh_a"))') \
+          'group by PickupRegionID,tripstarttimestamp ') \
     .show(truncate=False)
 
 

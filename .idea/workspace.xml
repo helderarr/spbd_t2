@@ -13,9 +13,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="exercice extra 2nd half">
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="add comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hive.hql" beforeDir="false" afterPath="$PROJECT_DIR$/hive.hql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sparksql.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparksql.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +168,7 @@
       <workItem from="1606928972220" duration="319000" />
       <workItem from="1606929399631" duration="226000" />
       <workItem from="1606929658516" duration="3659000" />
-      <workItem from="1606945340229" duration="23200000" />
+      <workItem from="1606945340229" duration="24670000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -241,7 +240,28 @@
       <option name="project" value="LOCAL" />
       <updated>1607090370088</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add comments">
+      <created>1607123770232</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1607123770232</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add comments">
+      <created>1607123827422</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1607123827422</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add comments">
+      <created>1607123836076</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1607123836076</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +287,8 @@
     <MESSAGE value="fim hive" />
     <MESSAGE value="exercice extra" />
     <MESSAGE value="exercice extra 2nd half" />
-    <option name="LAST_COMMIT_MESSAGE" value="exercice extra 2nd half" />
+    <MESSAGE value="add comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="add comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
