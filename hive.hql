@@ -42,7 +42,7 @@ LOAD DATA LOCAL INPATH "/root/work/Taxi_Trips_151MB.csv" INTO TABLE taxi_trips;
 select lpad(month(TripStartTimestamp), 2, "0") as month_number,
     count(*) as `#total_trips`
 from taxi_trips
-group by lpad(month(TripStartTimestamp), 2, "0");
+group by month(TripStartTimestamp);
 
 
 -- Question 2
@@ -64,8 +64,7 @@ select concat(PickupRegionID,"_",cast(date_format(tripstarttimestamp, "u") as IN
        round(avg (TripTotal),2) as avg_total_trip_cost
 from taxi_trips
 where PickupRegionID is not null and PickupRegionID <> ''
-group by concat(PickupRegionID,"_",cast(date_format(tripstarttimestamp, "u") as INT) -1,
-    date_format(tripstarttimestamp, "_hh_aaa"));
+group by PickupRegionID,tripstarttimestamp;
 
 -- Question 4
 -- top 3 companies driving from the most popular locations (more than 5000 trips from there)

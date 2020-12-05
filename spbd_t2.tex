@@ -1,0 +1,495 @@
+
+
+\documentclass[conference,compsoc]{IEEEtran}
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% for superscripts like first, second...
+\usepackage[super]{nth}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Big Data Processing Systems\\\nth{2} Project}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Helder Rodrigues}
+\IEEEauthorblockA{MAEBD\\FCT UNL PT\\Email: harr@campus.fct.unl.pt}
+
+}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+This document presents a set of experiments with the aim of showing the capabilities of 2 Big Data technologies, Hive and Spark in 2 flavours DataFrames and SQL, for extracting insights by processing a great volume of data.
+\end{abstract}
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+
+\section{Introduction}
+% no \IEEEPARstart
+We will go trough the Project 2 statement\cite{IEEEhowto:bdpsp1} analysing the  information about taxi rides in some city for better understanding the behavior of the community and help taxi drivers maximize their profit. We will use Big Data technology during our experiments, Hive and Spark in 2 flavours Data Frames and SQL, and take conclusions about the analysis methods. For Spark we used the python API denominated PySpark.
+
+\hfill hr
+
+\hfill December 2, 2020
+
+% \subsection{Subsection Heading Here}
+% Subsection text here.
+
+
+% \subsubsection{Subsubsection Heading Here}
+% Subsubsection text here.
+
+\section{Dataset}
+The Dataset consists in a collection of taxi trip records in some city, including fields for capturing pick-up and drop-off dates/times, pick-up and drop-off locations and trip distances.
+
+\section{PySpark Data Frames}
+We used PySpark Data Frames to create indexes for answering the following queries:
+\subsection{How many trips were started in each year present in the data set?}
+With a simple script, built in fluent mode, we applied an aggregation function \textit{count} on top of an aggregation by the year of the trip.
+\par
+Table \ref{output_1_1} shows an example of the obtained data. \par
+The obtained performance counters were: user 5.33 ms, sys: 3.94 ms, total: 9.27 ms
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 1.1}
+\label{output_1_1}
+\centering
+\begin{tabular}{c||c}
+\hline
+\bfseries year & \bfseries \#trips\\
+\hline\hline
+2013 & 54409\\
+2014 & 74753\\
+... & ...\\
+2019 & 32797\\
+2020 & 6829 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{For each of the 24 hours of the day, how many taxi trips there were, what was their average trip miles and trip total cost?}
+
+
+Table \ref{output_1_2} shows an example of the obtained data. \par
+The obtained performance counters were: user 16.5 ms, sys: 8.98 ms, total: 25.5 ms.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 1.2}
+\label{output_1_2}
+\centering
+\begin{tabular}{c||r|c|c}
+\hline
+
+\bfseries time\textunderscore slot & \bfseries \#trips & \bfseries avg\textunderscore trip\textunderscore miles & \bfseries avg\textunderscore trip\textunderscore total\\
+\hline\hline
+05 PM    & 23637 & 3.04          & 15.16  \\
+08 PM    & 22218 & 3.18          & 15.41  \\
+11 AM    & 18616 & 3.42          & 15.41  \\
+10 AM    & 17775 & 3.20          & 15.22  \\
+04 AM    & 4604  & 3.80          & 15.19  \\
+...    & ... & ... & ... \\
+11 PM    & 16299 & 2.86          & 14.32  \\
+06 AM    & 5628  & 5.25          & 19.92  \\
+09 PM    & 19783 & 3.31          & 15.44  \\
+10 PM    & 18491 & 3.11          & 14.95  \\
+09 AM    & 18246 & 3.10          & 14.47  \\
+03 PM    & 20704 & 3.50          & 16.26  \\
+
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{For each of the 24 hours of the day, which are the 5 most popular routes according to the the total number of taxi trips? Also report and the average fare.}
+This problem requires the computation of a ranking over one key. We used Spark's Data Frames windowing functions   provided by the Window class.
+Table \ref{output_1_3} shows an example of the obtained data. \par
+The obtained performance counters were: user 35.7 ms, sys: 14.5 ms, total: 50.2 ms
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 1.3}
+\label{output_1_3}
+\centering
+\begin{tabular}{c|c||c|c|c}
+\hline
+\bfseries Hour & \bfseries Route & \bfseries NTrps & \bfseries AMiles & \bfseries ACost\\
+\hline\hline
+
+01 AM&17031081700 17031081700&96&0.46&6.91	\\
+01 AM&17031081700 17031081800&73&0.54&6.96	\\
+...&...&...&...&...	\\
+08 PM&17031980000 17031980000&115&1.86&12.17\\
+11 PM&17031839100 17031320100&64&0.69&7.08	\\
+
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Extra Exercise: What's the impact of the fuel price in the ride total?}
+We stared by obtaining the historic prices of gas in the the U. S. \cite{IEEEhowto:oil_price}.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Historic average prices of gas in the U. S.}
+\label{oil_prices}
+\centering
+\begin{tabular}{c||c|c|c|c|c|c|c}
+\hline
+\bfseries Year&  \bfseries Jan&  \bfseries Feb& \bfseries Mar& \bfseries Apr& \bfseries May& \bfseries Jun& \bfseries ...\\
+\hline\hline
+2006& 2.36&2.326&2.468&2.787&2.953& 2.93&...\\
+2007&2.289&2.323&2.609&2.891&3.187&3.102&...\\
+2008&3.095&3.078&3.293&3.507&3.815&4.105&...\\
+2009& 1.84&1.975&2.011&2.102&2.316&2.681&...\\
+2010&2.769&2.699&2.824&  2.9& 2.89&2.785&...\\
+2011&3.148&3.264&3.615&3.852& 3.96&3.735&...\\
+2012& 3.44& 3.64&3.907&3.958&3.791&3.596&...\\
+2013&3.391&3.736&3.779&3.638&3.675&3.689&...\\
+\hline
+\end{tabular}
+\end{table}
+
+Unfortunately the data wasn't in tabular format but in a matrix of years x months, like presented on Table \ref{oil_prices}. Spark Data Frames has a very handy expression \textit{stack} for unpivoting matrices, transforming it into tables. After unpivoting the data we organised the data like shown in Table \ref{oil_prices_tabular}.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Historic average prices of gas in the U. S.}
+\label{oil_prices_tabular}
+\centering
+\begin{tabular}{c|c||c}
+\hline
+\bfseries Year& \bfseries Month& \bfseries Price\\
+\hline\hline
+1994&  Jan&0.998\\
+1994&  Feb&1.009\\
+1994&  Mar&1.008\\
+1995&  Jan& 1.13\\
+1995&  Feb& 1.12\\
+1995&  Mar&1.119\\
+...&  ...&...\\
+\hline
+\end{tabular}
+\end{table}
+
+We joined this data with the taxi rides data and we could calculate the cost of the consumed gas during each trip, taking into account an average consumption of 26.3 mpg \cite{IEEEhowto:fuel_eco}. Table \ref{output_1_4} shows an example of the obtained data. \par
+We can conclude that although the gas price oscillated substantially it always represented slightly the same proportion in the total bill, around 2.2\%.
+\par\par
+The obtained performance counters were: user 29.4 ms, sys: 20.1 ms, total: 49.5 ms
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 1.4}
+\label{output_1_4}
+\centering
+\begin{tabular}{c||c|c|c}
+\hline
+\bfseries year & \bfseries \% gas cost on total& \bfseries avg gas price \$/g & \bfseries \$/mile\\
+\hline\hline
+2013&2.2                &3.57             &6.17  \\
+2014&2.68               &3.46             &4.90   \\
+2015&2.06               &2.53             &4.68  \\
+2016&2.02               &2.25             &4.26  \\
+2017&2.19               &2.53             &4.38  \\
+2018&2.37               &2.83             &4.54  \\
+2019&2.18               &2.69             &4.72  \\
+2020&1.98               &2.47             &4.70   \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Spark SQL and Hive}
+We used Spark SQL and Hive to create indexes for answering the queries presented in the subsections bellow. The implementation is almost the same for both technologies as all the business logic is implemented in the SQL query.
+
+For hive we stared by creating a table, accordingly with the supplied csv file structure. For the columns containing date/time values we needed to instruct the serde about the regular expression of the date and time representation. For Spark SQL we also needed to indicate the regular expression of the Timestap columns, here in the read method for dataframe creation.
+
+\subsection{What is the accumulated number of taxi trips per month?}
+We developed a small Python programs that instantiates the Spark context for obtaining this insight.\par It starts by reading the dataset,  followed by a filter for eliminating empty lines. This out-of-the-box filter function is a big simplification when comparing with MapReduce, where we would need to create Mapper and a Reducer to accomplish the same result.  \par
+The next 2 steps \textit{map} and \textit{reduceByKey} behave mostly like a MapReduce pair. For the \textit{reduceByKey} we use an operation \textit{add} that receives 2 values and calculates the addition. Table \ref{output_2_1} shows an example of the obtained data.
+\par
+The obtained performance counters were: CPU times: user 26.3 ms, sys: 17.8 ms, total: 44.1 ms
+
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 2.1}
+\label{output_2_1}
+\centering
+\begin{tabular}{c||c}
+\hline
+\bfseries Month & \bfseries Number of trips\\
+\hline\hline
+
+7 &32141\\
+3 &35260\\
+... & ...\\
+4 &32884\\
+9 &31466\\
+\hline
+\end{tabular}
+\end{table}
+
+HIVE ELAPSED TIME: 14.62 s
+
+\subsection{For each pickup region, report the list of unique dropoff regions?}
+We had here the opportunity to use another out-of-the-box function: \textit{distinct}. In a single line we can avoid to code a MapReduce pair of programs. \par Another interesting construction was the \textit{groupByKey} function that allows us to collect all the RDD values in a single list without the need for coding any specific iterator.  Table \ref{output_2_2} shows an example of the obtained data.  \par
+The obtained performance counters were: CPU times: user 125 ms, sys: 65.5 ms, total: 190 ms
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 2.2}
+\label{output_2_2}
+\centering
+\begin{tabular}{c||c}
+\hline
+\bfseries Pickup region & \bfseries Dropoff regions\\
+\hline\hline
+
+17031770202 &['17031770202']\\
+17031020301 &['17031020802', '17031020301']\\
+17031837100 &['17031243000', '17031320400', '17031837100']\\
+17031030104 &['17031030104', '17031980000', '17031280100']\\
+17031040300 &['17031320400', '17031040300']\\
+... &...\\
+\hline
+\end{tabular}
+\end{table}
+
+HIVE ELAPSED TIME: 15.50 s
+
+\subsection{What is the expected duration and distance of a taxi ride, given the pickup region ID, the weekday (0=Monday, 6=Sunday) and time in format “hour AM/PM”?}
+
+We used for this exercise the \textit{aggregateByKey} function. It receives 2 parameters: The Zero value that we used to accumulate each record, the Sequential Operation function that computes the operation over two records and the Combiner Operation function that operates on the result of two Sequential Operations. In our case we used the same logic of summing all tuple members for both operations. Table \ref{output_2_3} shows an example of the obtained data. \par
+The obtained performance counters were: CPU times: user 2.74 s, sys: 1.11 s, total: 3.85 s
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Results of 2.3}
+\label{output_2_3}
+\centering
+\begin{tabular}{c||c|c}
+\hline
+\bfseries Pickup\_Weekday\_Time & \bfseries Avg Duration & \bfseries Avg Distance\\
+\hline\hline
+17031081000\_6\_09PM & 537.40 & 1.10\\
+17031838200\_4\_09AM & 425.33 & 1.63\\
+... & ... & ...\\
+17031062600\_5\_08PM & 1057.25 & 2.33\\
+17031062100\_3\_09AM & 956.00 & 6.90\\
+\hline
+\end{tabular}
+\end{table}
+
+HIVE ELAPSED TIME: 21.10 s
+
+\subsection{EXTRA: Which are the top 3 companies driving from the most popular locations? (more than 5000 trips from there)}
+We observe that the \textit{Taxi Affiliation Services} company dominates the trips from the most popular locations in the city followed by \textit{Flash Cab}, the third place is shared between several smaller providers. \par
+As this insight is complex we needed to create 4 sub-queries using the SQL \textbf{with} statement. For being able to obtaining the 3 ranking measures, top 3 and bugger than 5000 trips, we needed to use \textbf{windowing functions}. \par
+Even with complex queries like this one the syntax on Hive and on Spark SQL was exactly the same.
+
+Hive 12.67 s
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.4}
+\caption{Results of  1.4}
+\label{perf_1_4}
+\centering
+\begin{tabular}{c||l|c}
+\hline
+\bfseries pickupregionid &\bfseries company   & \bfseries ntrips \\
+\hline\hline
+17031839100 &Taxi Affiliation Services        & 8485  \\
+17031839100 &Flash Cab                        & 3485  \\
+17031839100 &Yellow Cab                       & 2308  \\
+\hline
+17031320100 &Taxi Affiliation Services        & 4567  \\
+17031320100 &Flash Cab                        & 1768  \\
+17031320100 &Blue Ribbon Taxi Association Inc.& 1396  \\
+\hline
+17031980000 &Taxi Affiliation Services        & 2955  \\
+17031980000 &Flash Cab                        & 1404  \\
+17031980000 &Dispatch Taxi Affiliation        & 950   \\
+\hline
+17031081500 &Taxi Affiliation Services        & 3452  \\
+17031081500 &Flash Cab                        & 1201  \\
+17031081500 &Choice Taxi Association          & 1002  \\
+\hline
+17031081700 &Taxi Affiliation Services        & 3110  \\
+17031081700 &Flash Cab                        & 1476  \\
+17031081700 &Dispatch Taxi Affiliation        & 997   \\
+\hline
+17031281900 &Taxi Affiliation Services        & 2736  \\
+17031281900 &Chicago Carriage Cab Corp        & 1063  \\
+17031281900 &Flash Cab                        & 891   \\
+\hline
+17031081403 &Taxi Affiliation Services        & 2313  \\
+17031081403 &Flash Cab                        & 814   \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+
+\subsection{MapReduce}
+\begin{itemize}
+\item Mappers and Reducers are different standalone programs reading from Standard Input and writing in Standard Output. They don't have any dependency on any kind of Hadoop library.
+\item The MapReduce execution parameters can be modified by dependency injection and inversion of control on the \textit{hadoop} command. It allows to modify program parameters like sorting comparing criteria or columns.
+\end{itemize}
+\subsection{PySpark}
+\begin{itemize}
+\item PySpark RDD has a good set of out-of-the-box functions for helping us massaging the data in a performant and scalable way without the need of writing custom MapReduce implementations. The code becomes more readable and the implementation is highly scalable by nature.
+\item PySpark programs are executed in a Lazy fashion. The execution graph is only triggered when we need to persist or show results. In our examples it is the execution of the \textit{collect} function that triggers the dataflow.
+\item Debugging PySpark can be tricky as the execution is distributed and parallelized. One good way of accomplishing it is by using design by contract patterns like the invariants, that we can evaluate by using the \textit{assert} function.
+\end{itemize}
+
+\subsection{Performance}
+\begin{itemize}
+\item We compared the performance of Exercise 1 for MapReduce and Exercise 1 for PySpark and we obtained the values presented in Table \ref{perf_conclusion}. We choose these 2 problems because they present similar complexity over the same dataset. We noted a performance 64 times superior when using PySpark. \par
+\item For both MapReduce and PySpark we should avoid to use lists of Python, NumPy or Pandas. Those programming patterns aren't adapted to run on top of a distributed cluster and will not be scalable.
+\end{itemize}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Performance comparison MapReduce / PySpark}
+\label{perf_conclusion}
+\centering
+\begin{tabular}{c||c|c}
+\hline
+\bfseries Time & \bfseries MapReduce Ex. 1 & \bfseries PySpark Ex. 1 \\
+\hline\hline
+ user & 0m1.799s           & 26.3 ms \\
+ sys  & 0m1.035s           & 17.8 ms \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{IEEEhowto:bdpsp1}
+J. Lourenço, \emph{Big Data Processing Systems — Project nº 1}, 2020/21.\hskip 1em plus
+  0.5em minus 0.4em\relax DI, FCT, UNL, PT.
+
+\bibitem{IEEEhowto:bdps_lect}
+J. Lourenço, \emph{Big Data Processing Systems — Class Lectures}, 2020/21.\hskip 1em plus
+  0.5em minus 0.4em\relax DI, FCT, UNL, PT.
+\bibitem{IEEEhowto:test}
+Thomas Erl, Wajid Khattak and Paul Buhler \emph{Big Data Fundamentals}, 2016\hskip 1em plus 0.5em minus 0.4em\relax Prentice Hall.
+\bibitem{IEEEhowto:oil_price} U.S. Energy Information Administration \emph{U.S. All Grades All Formulations Retail Gasoline Prices (Dollars per Gallon)}
+\bibitem{IEEEhowto:fuel_eco} Wikipedia \emph{Fuel economy in automobiles}
+
+\end{thebibliography}
+
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Work division}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Work division}
+\fi
+
+
+59290 - Helder Rodrigues - All
+
+
+
+% that's all folks
+\end{document}
+
+

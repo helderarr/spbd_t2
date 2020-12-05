@@ -44,13 +44,14 @@ df.groupBy(year("TripStartTimestamp").alias("year")) \
 # For each of the 24 hours of the day, how many taxi trips there were, what was their average
 # trip miles and trip total cost?
 # Non-integer values should be printed with two decimal places.
-df.withColumn("time_slot", date_format("TripStartTimestamp", "hh a")) \
+df.where(col("TripStartTimestamp").isNotNull()) \
+    .withColumn("time_slot", date_format("TripStartTimestamp", "hh a")) \
     .groupBy("time_slot").agg({"TripMiles": "avg", "TripTotal": "avg", "*": "count"}) \
     .withColumnRenamed("count(1)", "#trips") \
     .withColumn("avg_trip_miles", format_number("avg(TripMiles)", 2)) \
     .withColumn("avg_trip_total", format_number("avg(TripTotal)", 2)) \
     .select("time_slot", "#trips", "avg_trip_miles", "avg_trip_total") \
-    .cache().show(truncate=False)
+    .cache().show(truncate=False,n=24)
 
 # For each of the 24 hours of the day, which are the(up to) 5 most popular routes(pairs
 # pickup / dropoff regions) according to the the total number of taxi trips? Also report

@@ -13,8 +13,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="add cache action for measuring times">
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="add notebooks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive.hql" beforeDir="false" afterPath="$PROJECT_DIR$/hive.hql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sparkdataframes.py" beforeDir="false" afterPath="$PROJECT_DIR$/sparkdataframes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +169,7 @@
       <workItem from="1606928972220" duration="319000" />
       <workItem from="1606929399631" duration="226000" />
       <workItem from="1606929658516" duration="3659000" />
-      <workItem from="1606945340229" duration="27560000" />
+      <workItem from="1606945340229" duration="33130000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -275,7 +276,28 @@
       <option name="project" value="LOCAL" />
       <updated>1607167417239</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix extra">
+      <created>1607175032986</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1607175032987</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix git">
+      <created>1607175302771</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1607175302771</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add notebooks">
+      <created>1607175378841</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1607175378841</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +326,10 @@
     <MESSAGE value="add comments" />
     <MESSAGE value="simplify group by" />
     <MESSAGE value="add cache action for measuring times" />
-    <option name="LAST_COMMIT_MESSAGE" value="add cache action for measuring times" />
+    <MESSAGE value="fix extra" />
+    <MESSAGE value="fix git" />
+    <MESSAGE value="add notebooks" />
+    <option name="LAST_COMMIT_MESSAGE" value="add notebooks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
