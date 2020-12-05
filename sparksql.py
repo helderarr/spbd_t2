@@ -39,7 +39,8 @@ df.createOrReplaceTempView("taxi_trips")
 spark.sql('select lpad(month(TripStartTimestamp), 2, "0") as month_number,'
           '     count(*) as `#total_trips` '
           'from taxi_trips '
-          'group by lpad(month(TripStartTimestamp), 2, "0")').show()
+          'group by lpad(month(TripStartTimestamp), 2, "0")')\
+    .cache().show(truncate=False)
 
 # For each pickup region, report the list of unique dropoff regions?
 # Output is expected to have two columns: (pickup_region_ID, list_of_dropoff_region_ID)
@@ -49,7 +50,7 @@ spark.sql('select PickupRegionID as pickup_region_ID,'
           '      from taxi_trips'
           '      where PickupRegionID is not null and DropoffRegionID is not null) '
           'group by PickupRegionID') \
-    .show(truncate=False)
+    .cache().show(truncate=False)
 
 
 # What is the expected charge/cost of a taxi ride, given the pickup region ID, the weekday
@@ -70,7 +71,7 @@ spark.sql('select concat(PickupRegionID,"_",day_off_week(tripstarttimestamp),dat
           'from taxi_trips '
           'where PickupRegionID is not null and PickupRegionID <> "" '
           'group by PickupRegionID,tripstarttimestamp ') \
-    .show(truncate=False)
+    .cache().show(truncate=False)
 
 
 # Question 4
@@ -93,6 +94,6 @@ spark.sql('with trips_per_company as ( '
           '    order by total_sum desc, r asc) '
           'select pickupregionid,company,ntrips '
           'from filtered_data') \
-    .show(truncate=False)
+    .cache().show(truncate=False)
 
 spark.stop()
