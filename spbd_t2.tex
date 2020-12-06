@@ -139,7 +139,7 @@ The obtained performance counters were: user 5.33 ms, sys: 3.94 ms, total: 9.27 
 \end{table}
 
 \subsection{For each of the 24 hours of the day, how many taxi trips there were, what was their average trip miles and trip total cost?}
-
+This problem is solved by a simple grouping by the trip hour. In this case, instead of computing a single kpi we obtained the value of 3 aggregation functions over the same aggregation.
 
 Table \ref{output_1_2} shows an example of the obtained data. \par
 The obtained performance counters were: user 16.5 ms, sys: 8.98 ms, total: 25.5 ms.
@@ -197,7 +197,7 @@ The obtained performance counters were: user 35.7 ms, sys: 14.5 ms, total: 50.2 
 \end{tabular}
 \end{table}
 
-\subsection{Extra Exercise: What's the impact of the fuel price in the ride total?}
+\subsection{EXTRA: What's the impact of the fuel price in the ride total?}
 We stared by obtaining the historic prices of gas in the the U. S. \cite{IEEEhowto:oil_price}.
 
 \begin{table}[!t]
@@ -275,10 +275,24 @@ We used Spark SQL and Hive to create indexes for answering the queries presented
 For hive we stared by creating a table, accordingly with the supplied csv file structure. For the columns containing date/time values we needed to instruct the serde about the regular expression of the date and time representation. For Spark SQL we also needed to indicate the regular expression of the Timestap columns, here in the read method for dataframe creation.
 
 \subsection{What is the accumulated number of taxi trips per month?}
-We developed a small Python programs that instantiates the Spark context for obtaining this insight.\par It starts by reading the dataset,  followed by a filter for eliminating empty lines. This out-of-the-box filter function is a big simplification when comparing with MapReduce, where we would need to create Mapper and a Reducer to accomplish the same result.  \par
-The next 2 steps \textit{map} and \textit{reduceByKey} behave mostly like a MapReduce pair. For the \textit{reduceByKey} we use an operation \textit{add} that receives 2 values and calculates the addition. Table \ref{output_2_1} shows an example of the obtained data.
+We developed a small SQL query for grouping the data per month and count the number or trips. The query run, without any modification, on both Hive and Spark SQL. Table \ref{output_2_1} shows an example of the obtained data.
 \par
-The obtained performance counters were: CPU times: user 26.3 ms, sys: 17.8 ms, total: 44.1 ms
+
+The obtained performance counters can be checked on Table \ref{perf_2_1}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Performance of 2.1}
+\label{perf_2_1}
+\centering
+\begin{tabular}{c|c}
+\hline
+\bfseries Hive & \bfseries Spark SQL \\
+\hline\hline
+14.62 s          & 44.1 ms    \\
+\hline
+\end{tabular}
+\end{table}
 
 
 \begin{table}[!t]
@@ -288,23 +302,22 @@ The obtained performance counters were: CPU times: user 26.3 ms, sys: 17.8 ms, t
 \centering
 \begin{tabular}{c||c}
 \hline
-\bfseries Month & \bfseries Number of trips\\
+\bfseries month\_number & \bfseries \#total\_trips\\
 \hline\hline
-
-7 &32141\\
-3 &35260\\
-... & ...\\
-4 &32884\\
-9 &31466\\
+12           & 29252       \\
+01           & 30357       \\
+...           & ...       \\
+03           & 35260       \\
+05           & 34979       \\
 \hline
 \end{tabular}
 \end{table}
 
-HIVE ELAPSED TIME: 14.62 s
+
 
 \subsection{For each pickup region, report the list of unique dropoff regions?}
-We had here the opportunity to use another out-of-the-box function: \textit{distinct}. In a single line we can avoid to code a MapReduce pair of programs. \par Another interesting construction was the \textit{groupByKey} function that allows us to collect all the RDD values in a single list without the need for coding any specific iterator.  Table \ref{output_2_2} shows an example of the obtained data.  \par
-The obtained performance counters were: CPU times: user 125 ms, sys: 65.5 ms, total: 190 ms
+
+Here we used the \textit{collect\_list} aggregation function to concatenate all the aggregated lines in a single list. We also use a sub query for eliminate duplicates using the \textit{distinct} key word.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -313,7 +326,7 @@ The obtained performance counters were: CPU times: user 125 ms, sys: 65.5 ms, to
 \centering
 \begin{tabular}{c||c}
 \hline
-\bfseries Pickup region & \bfseries Dropoff regions\\
+\bfseries pickup\_region\_ID & \bfseries list\_of\_dropoff\_region\_ID\\
 \hline\hline
 
 17031770202 &['17031770202']\\
@@ -326,39 +339,72 @@ The obtained performance counters were: CPU times: user 125 ms, sys: 65.5 ms, to
 \end{tabular}
 \end{table}
 
-HIVE ELAPSED TIME: 15.50 s
+The obtained performance counters can be checked on Table \ref{perf_2_2}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Performance of 2.2}
+\label{perf_2_2}
+\centering
+\begin{tabular}{c|c}
+\hline
+\bfseries Hive & \bfseries Spark SQL \\
+\hline\hline
+15.50 s         & 190 ms    \\
+\hline
+\end{tabular}
+\end{table}
+
 
 \subsection{What is the expected duration and distance of a taxi ride, given the pickup region ID, the weekday (0=Monday, 6=Sunday) and time in format “hour AM/PM”?}
 
-We used for this exercise the \textit{aggregateByKey} function. It receives 2 parameters: The Zero value that we used to accumulate each record, the Sequential Operation function that computes the operation over two records and the Combiner Operation function that operates on the result of two Sequential Operations. In our case we used the same logic of summing all tuple members for both operations. Table \ref{output_2_3} shows an example of the obtained data. \par
-The obtained performance counters were: CPU times: user 2.74 s, sys: 1.11 s, total: 3.85 s
+For presenting the weekday we haven't found a common approach for Spark SQL and for Hive. For Spark SQL we developed an UDF as the Spark \textit{date\_format} hasn't a numeric representation for the weekday. Hive has the capability to extract the numeric representation of the weekday, however it isn't aligned with the specification, so we needed to convert the weekday to integer and subtract 1.
+
+ Table \ref{output_2_3} shows an example of the obtained data. \par
+
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
 \caption{Results of 2.3}
 \label{output_2_3}
 \centering
-\begin{tabular}{c||c|c}
+\begin{tabular}{c||c}
 \hline
-\bfseries Pickup\_Weekday\_Time & \bfseries Avg Duration & \bfseries Avg Distance\\
+\bfseries pickup              & \bfseries avg\_total\_trip\_cost\\
 \hline\hline
-17031081000\_6\_09PM & 537.40 & 1.10\\
-17031838200\_4\_09AM & 425.33 & 1.63\\
-... & ... & ...\\
-17031062600\_5\_08PM & 1057.25 & 2.33\\
-17031062100\_3\_09AM & 956.00 & 6.90\\
+17031081600\_3\_12\_PM & 5.85               \\
+17031071500\_5\_12\_PM & 3.25               \\
+... & ...   \\
+17031081500\_5\_12\_AM & 12.45              \\
+17031842300\_1\_08\_AM & 43.8               \\
+17031081000\_5\_03\_PM & 7.05               \\
 \hline
 \end{tabular}
 \end{table}
 
-HIVE ELAPSED TIME: 21.10 s
+The obtained performance counters can be checked on Table \ref{perf_2_3}
+The UDF highly penalised the performance. We could try other approaches like a case condition for each textual weekday or a join with a temporary table with pairs (Mon, 0),(Tue, 1)...
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Performance of 2.3}
+\label{perf_2_3}
+\centering
+\begin{tabular}{c||c|c}
+\hline
+\bfseries Mode &\bfseries Hive & \bfseries Spark SQL \\
+\hline\hline
+With Weekday (UDF for Spark) & 16.77 s         & 3.85 s    \\
+No Weekday & 15.33 s  & 4.87 ms \\
+\hline
+\end{tabular}
+\end{table}
+
 
 \subsection{EXTRA: Which are the top 3 companies driving from the most popular locations? (more than 5000 trips from there)}
 We observe that the \textit{Taxi Affiliation Services} company dominates the trips from the most popular locations in the city followed by \textit{Flash Cab}, the third place is shared between several smaller providers. \par
 As this insight is complex we needed to create 4 sub-queries using the SQL \textbf{with} statement. For being able to obtaining the 3 ranking measures, top 3 and bugger than 5000 trips, we needed to use \textbf{windowing functions}. \par
 Even with complex queries like this one the syntax on Hive and on Spark SQL was exactly the same.
 
-Hive 12.67 s
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.4}
@@ -399,40 +445,40 @@ Hive 12.67 s
 \end{tabular}
 \end{table}
 
+The obtained performance counters can be checked on Table \ref{perf_2_4}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Performance of 2.4}
+\label{perf_2_4}
+\centering
+\begin{tabular}{c|c}
+\hline
+\bfseries Hive & \bfseries Spark SQL \\
+\hline\hline
+12.67 s        & 6.13 ms    \\
+\hline
+\end{tabular}
+\end{table}
+
+
 \section{Conclusion}
 
-\subsection{MapReduce}
+
 \begin{itemize}
-\item Mappers and Reducers are different standalone programs reading from Standard Input and writing in Standard Output. They don't have any dependency on any kind of Hadoop library.
-\item The MapReduce execution parameters can be modified by dependency injection and inversion of control on the \textit{hadoop} command. It allows to modify program parameters like sorting comparing criteria or columns.
-\end{itemize}
-\subsection{PySpark}
-\begin{itemize}
-\item PySpark RDD has a good set of out-of-the-box functions for helping us massaging the data in a performant and scalable way without the need of writing custom MapReduce implementations. The code becomes more readable and the implementation is highly scalable by nature.
-\item PySpark programs are executed in a Lazy fashion. The execution graph is only triggered when we need to persist or show results. In our examples it is the execution of the \textit{collect} function that triggers the dataflow.
-\item Debugging PySpark can be tricky as the execution is distributed and parallelized. One good way of accomplishing it is by using design by contract patterns like the invariants, that we can evaluate by using the \textit{assert} function.
+\item HIVE language is designated HQL, its syntax isn't filly SQL compliant however in our case we haven't found any particular limitation.
+\item For being able to measure the computation of the full DAG of our Spark exercises we executed a \textit{cache()} action. Otherwise the \textit{show()} function would only compute the necessary to show an output sample. This was valid for Spark Data frames as well as for Spark SQL
+\item In Big Data, like in most of the computing frameworks, working with dates and times is often tricky. Most of the particularities were solved at the beginning during the Table creation for Hive and during the first dataframe instantiation for both Spark technologies.
+
 \end{itemize}
 
 \subsection{Performance}
 \begin{itemize}
-\item We compared the performance of Exercise 1 for MapReduce and Exercise 1 for PySpark and we obtained the values presented in Table \ref{perf_conclusion}. We choose these 2 problems because they present similar complexity over the same dataset. We noted a performance 64 times superior when using PySpark. \par
-\item For both MapReduce and PySpark we should avoid to use lists of Python, NumPy or Pandas. Those programming patterns aren't adapted to run on top of a distributed cluster and will not be scalable.
+\item We collected the ELAPSED TIME measure of Hive and the total CPU time for Spark. This means we don't consider the time for rendering results, as we have different outputs CLI and Jupyter Notebook.
+\item For being able to measure the computation of the full DAG of our Spark exercises we executed a \textit{cache()} action. Otherwise the \textit{show()} function would only compute the necessary to show an output sample. This was valid for Spark Data frames as well as for Spark SQL.
+\item UDF functions in Spark SQL highly penalise performance.
+\item Hive performance is much poor, in most cases, when compared with Spark SQL. However this isn't always true as today Hive has engines, other than MapReduce or Tez, like LLAP that promise very good results for interactive querying.
 \end{itemize}
-
-\begin{table}[!t]
-\renewcommand{\arraystretch}{1.3}
-\caption{Performance comparison MapReduce / PySpark}
-\label{perf_conclusion}
-\centering
-\begin{tabular}{c||c|c}
-\hline
-\bfseries Time & \bfseries MapReduce Ex. 1 & \bfseries PySpark Ex. 1 \\
-\hline\hline
- user & 0m1.799s           & 26.3 ms \\
- sys  & 0m1.035s           & 17.8 ms \\
-\hline
-\end{tabular}
-\end{table}
 
 
 
