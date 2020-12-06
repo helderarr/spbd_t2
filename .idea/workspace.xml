@@ -13,16 +13,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="complete report">
-      <change afterPath="$PROJECT_DIR$/hive-0.hql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hive-1.hql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hive-2.hql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hive-3.hql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hive-4.hql" afterDir="false" />
+    <list default="true" id="fed2692c-3f2e-468e-8ac4-059457fa4adf" name="Default Changelist" comment="delivered">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPBD Assignment 2 SPARK DATAFRAMES.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPBD Assignment 2 SPARK SQL.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spbd_t2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/spbd_t2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gas_price.csv" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/gas_price.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive-0.hql" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/hive-0.hql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive-1.hql" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/hive-1.hql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive-2.hql" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/hive-2.hql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive-3.hql" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/hive-3.hql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hive-4.hql" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/hive-4.hql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pySpark-SQL.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/pySpark-SQL.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pySpark-dataframes.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/pySpark-dataframes.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/G07_59290_hw2/report.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +59,7 @@
       <recent name="$PROJECT_DIR$/hive" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/G07_59290_hw2" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -175,7 +177,7 @@
       <workItem from="1606928972220" duration="319000" />
       <workItem from="1606929399631" duration="226000" />
       <workItem from="1606929658516" duration="3659000" />
-      <workItem from="1606945340229" duration="38384000" />
+      <workItem from="1606945340229" duration="38892000" />
     </task>
     <task id="LOCAL-00001" summary="init hive">
       <created>1606727958894</created>
@@ -324,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607265685866</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="delivered">
+      <created>1607276698364</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1607276698364</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,7 +368,8 @@
     <MESSAGE value="save report" />
     <MESSAGE value="add 2.3 alternative" />
     <MESSAGE value="complete report" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete report" />
+    <MESSAGE value="delivered" />
+    <option name="LAST_COMMIT_MESSAGE" value="delivered" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
