@@ -182,16 +182,16 @@ The obtained performance counters were: user 35.7 ms, sys: 14.5 ms, total: 50.2 
 \caption{Results of 1.3}
 \label{output_1_3}
 \centering
-\begin{tabular}{c|c||c|c|c}
+\begin{tabular}{c||c|c|c}
 \hline
-\bfseries Hour & \bfseries Route & \bfseries NTrps & \bfseries AMiles & \bfseries ACost\\
+\bfseries pickup\_location & \bfseries \#trips & \bfseries a\_miles & \bfseries a\_total \\
 \hline\hline
-
-01 AM&17031081700 17031081700&96&0.46&6.91	\\
-01 AM&17031081700 17031081800&73&0.54&6.96	\\
-...&...&...&...&...	\\
-08 PM&17031980000 17031980000&115&1.86&12.17\\
-11 PM&17031839100 17031320100&64&0.69&7.08	\\
+05 PM 17031839100 17031839100 & 466 & 0.58 & 6.66 \\
+05 PM 17031839100 17031281900 & 327 & 0.58 & 6.56 \\
+05 PM 17031839100 17031320100 & 292 & 0.69 & 7.20 \\
+... & ... & ... & ... \\
+05 PM 17031839100 17031280100 & 199 & 0.67 & 6.77 \\
+08 PM 17031839100 17031839100 & 183 & 0.49 & 6.17 \\
 
 \hline
 \end{tabular}
@@ -202,7 +202,7 @@ We stared by obtaining the historic prices of gas in the the U. S. \cite{IEEEhow
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
-\caption{Historic average prices of gas in the U. S.}
+\caption{Historic average prices of gas in the U. S. \cite{IEEEhowto:oil_price} - Matrix format}
 \label{oil_prices}
 \centering
 \begin{tabular}{c||c|c|c|c|c|c|c}
@@ -216,7 +216,7 @@ We stared by obtaining the historic prices of gas in the the U. S. \cite{IEEEhow
 2010&2.769&2.699&2.824&  2.9& 2.89&2.785&...\\
 2011&3.148&3.264&3.615&3.852& 3.96&3.735&...\\
 2012& 3.44& 3.64&3.907&3.958&3.791&3.596&...\\
-2013&3.391&3.736&3.779&3.638&3.675&3.689&...\\
+...&...&...&...&...&...&...&...\\
 \hline
 \end{tabular}
 \end{table}
@@ -225,7 +225,7 @@ Unfortunately the data wasn't in tabular format but in a matrix of years x month
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
-\caption{Historic average prices of gas in the U. S.}
+\caption{Historic average prices of gas in the U. S.\cite{IEEEhowto:oil_price} - Tabular Format }
 \label{oil_prices_tabular}
 \centering
 \begin{tabular}{c|c||c}
@@ -382,7 +382,7 @@ For presenting the weekday we haven't found a common approach for Spark SQL and 
 \end{tabular}
 \end{table}
 
-The obtained performance counters can be checked on Table \ref{perf_2_3}
+The obtained performance counters can be checked on Table \ref{perf_2_3}.
 The UDF highly penalised the performance. We could try other approaches like a case condition for each textual weekday or a join with a temporary table with pairs (Mon, 0),(Tue, 1)...
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -467,7 +467,6 @@ The obtained performance counters can be checked on Table \ref{perf_2_4}
 
 \begin{itemize}
 \item HIVE language is designated HQL, its syntax isn't filly SQL compliant however in our case we haven't found any particular limitation.
-\item For being able to measure the computation of the full DAG of our Spark exercises we executed a \textit{cache()} action. Otherwise the \textit{show()} function would only compute the necessary to show an output sample. This was valid for Spark Data frames as well as for Spark SQL
 \item In Big Data, like in most of the computing frameworks, working with dates and times is often tricky. Most of the particularities were solved at the beginning during the Table creation for Hive and during the first dataframe instantiation for both Spark technologies.
 
 \end{itemize}
@@ -508,7 +507,7 @@ The obtained performance counters can be checked on Table \ref{perf_2_4}
 \begin{thebibliography}{1}
 
 \bibitem{IEEEhowto:bdpsp1}
-J. Lourenço, \emph{Big Data Processing Systems — Project nº 1}, 2020/21.\hskip 1em plus
+J. Lourenço, \emph{Big Data Processing Systems — Project nº 2}, 2020/21.\hskip 1em plus
   0.5em minus 0.4em\relax DI, FCT, UNL, PT.
 
 \bibitem{IEEEhowto:bdps_lect}
