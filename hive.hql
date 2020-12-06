@@ -66,6 +66,13 @@ from taxi_trips
 where PickupRegionID is not null and PickupRegionID <> ''
 group by PickupRegionID,tripstarttimestamp;
 
+-- variant without Weekday just for measuring processing time
+select concat(PickupRegionID, date_format(tripstarttimestamp, "_hh_aaa")) as pickup,
+       round(avg (TripTotal),2) as avg_total_trip_cost
+from taxi_trips
+where PickupRegionID is not null and PickupRegionID <> ''
+group by PickupRegionID,tripstarttimestamp;
+
 -- Question 4
 -- top 3 companies driving from the most popular locations (more than 5000 trips from there)
 with trips_per_company as (
@@ -83,6 +90,6 @@ filtered_data as (
     select pickupregionid,company, total_sum,ntrips,r
     from ranked_trips_per_company
     where r <= 3 and total_sum >= 5000
-    order by total_sum desc, r asc)
+    order by total_sum desc, pickupregionid asc, r asc)
 select pickupregionid,company,ntrips
 from filtered_data;
